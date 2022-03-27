@@ -9,7 +9,7 @@ byjus-searchbar-widget/node_modules
 build
 dist
 .rpt2_cache
-byjus-searchbar-widget/dist
+byjus-searchbar-widget
 
 # misc
 .DS_Store
