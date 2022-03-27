@@ -3,11 +3,13 @@
 
 # dependencies
 node_modules
+byjus-searchbar-widget/node_modules
 
 # builds
 build
 dist
 .rpt2_cache
+byjus-searchbar-widget/dist
 
 # misc
 .DS_Store
