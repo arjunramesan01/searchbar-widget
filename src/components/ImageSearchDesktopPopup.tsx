@@ -4,16 +4,9 @@ import styles from '../styles/popup.module.css';
 import { default as NextImage} from 'next/image';
 import { assetURL } from '../services/constants';
 import { search_lo_by_image, dataURItoBlob } from '../services/common-service';
-import Router from 'next/router';
 import { encode } from 'url-encode-decode';
-const BackIcon = dynamic(() => import("../public/BackIcon"));
-const CameraIcon = dynamic(() => import("../public/CameraIcon"));
-const RetakeIcon = dynamic(() => import("../public/RetakeIcon"))
-const RotateIcon = dynamic(() => import("../public/RotateIcon"));
-import "cropperjs/dist/cropper.css";
-import { setCookies } from 'cookies-next';
 
-const ImageSearchDesktopPopup = (props) => {
+const ImageSearchDesktopPopup = (props: any) => {
     const [fileUploadError, setFileUploadError] = useState(false);
     var [imageUploaded, setImageUploaded] = useState(false);
     var [imageFinalized, setImageFinalized] = useState(false);
