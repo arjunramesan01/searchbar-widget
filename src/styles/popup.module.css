@@ -1,0 +1,812 @@
+.cameraBackIcon {
+    position: absolute;
+    left: 10px;
+    z-index: 11;
+    top: 10px;
+  }
+  
+  .landingModalButtonDiv {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .landingModalImage {
+    width: 100%;
+    position: relative;
+    padding-bottom: 66.3793%;
+  }
+  
+  .landingPopupButton {
+    border: 0;
+    font-size: 25px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #fff;
+    vertical-align: middle;
+    padding: 5px 40px;
+    border-radius: 30px;
+    background-color: #ff806d;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+    background-image: linear-gradient(to right, #ff806d, #f7c500);
+    outline: 0;
+    outline: none;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .sendFeedbackButton {
+    border: none;
+    margin-top: 40px;
+    padding: 0 20px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    height: 48px;
+    width: 520px;
+    border-radius: 27px;
+    box-shadow: 0 3px 6px 0 rgba(91, 22, 170, 0.17);
+    background-image: linear-gradient(to right, #9752ff, #5e93ff);
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .feedbackOptionsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .feedbackSuggestions {
+    display: inline-block;
+    margin: 16px 16px 0 0;
+    padding: 12px 32px;
+    border-radius: 100px;
+    border: solid 1px #f6f6f6;
+    box-shadow: 0 4px 4px 0 rgba(196, 196, 196, 0.2);
+    background-color: #fff;
+    cursor: pointer;
+    flex-grow: 0;
+    background-image: linear-gradient(to top, #9655ff, #6290ff);
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 18px;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  
+  .feedbackTextarea {
+    width: 100%;
+    border-radius: 8px;
+    border: solid 1px rgba(0, 0, 0, 0.12);
+    margin-top: 24px;
+    padding: 15px;
+    font-family: inherit;
+  }
+  
+  .closeButton {
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    top: 14px;
+    padding: 10px;
+    line-height: 15.2px;
+    color: #191919;
+    font-weight: 400;
+    font-size: 28px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    -webkit-appearance: none;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+  }
+  
+  .closeButton:hover {
+    color: #000;
+    opacity: 0.5;
+  }
+  
+  .webcamClass {
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+  }
+  
+  .captureButton {
+    /* position: absolute;
+    bottom: 120px; */
+  }
+  
+  .clickPicture {
+    width: 75px;
+    height: 75px;
+    border: 5px solid #8C69FF;
+    border-radius: 50%;
+  }
+  
+  .galleryImage {
+    display: none;
+  }
+  
+  .innerCircle {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  
+  .askADoubtPopupTopbanner{
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    column-gap: 15px;
+  }
+  .askADoubtPopupTopbannerIcons{
+    transform: translate(0, -4px);
+  }
+  
+  .askADoubtPopupTopbannerTitle{
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .typeButton {
+    display: flex;
+    align-items: center;
+  }
+  
+  .galleryButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cameraMessage {
+    width: max-content;
+    height: 35px;
+    padding: 0 15px;
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 0;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #fff;
+  }
+  
+  .centerMarker {
+    position: absolute;
+    top: 43%;
+  }
+  
+  .cameraError {
+  
+    position: absolute;
+    text-align: center;
+    top: 150px;
+    flex-grow: 0;
+    border-radius: 10px;
+    padding: 30px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .errorTitle {
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .errorText {
+    color: white;
+    opacity: 0.5;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+  
+  .feedbackModal {
+    padding: 20px;
+  }
+  
+  .crossIcon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 24px;
+    right: 24px;
+    width: 30px;
+    height: 30px;
+    z-index: 3;
+    border-radius: 50%;
+    background-color: #f7f8fa;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+  
+  .cropperScreen {
+    bottom: 128px;
+    z-index: 10;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+  
+  .rotate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .closeIcon {
+    position: absolute;
+    cursor: pointer;
+    top: 14px;
+    right: 11px;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .closeIcon div{
+    height: 14px;
+    width: 16px;
+  }
+  
+  .fileBody {
+    height: 174px;
+    padding: 24px 70px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    color: #999;
+    border-radius: 12px;
+    border: 1px dashed #d9d9d9;
+    background: white;
+    display: inline-block;
+  }
+  
+  .fileSelector {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    cursor: pointer;
+    left: 0;
+    z-index: 2;
+  }
+  
+  .black {
+    font-weight: 700;
+    font-size: 20px;
+    color: #333;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .circle {
+    border: 1px dashed #d9d9d9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 62px;
+    height: 62px;;
+  }
+  
+  .circleHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .thumbnailContainer {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .thumbnailContainer Image {
+    width: 100%;
+  }
+  
+  .scannedThumbnailContainer {
+    height: 200px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .popupTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #333;
+  }
+  
+  .purple {
+    color: #a373ac;
+  }
+  
+  .fileUploadArea{
+    margin-top: 40px;
+  }
+  
+  .askADoubtPopupContinueButtonHolder{
+    margin-top: 40px;
+    text-align: center;
+  }
+  .askADoubtPopupTextarea{
+    width: 100%;
+    margin-top: 45px;
+    padding: 16px;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    color:#979697;
+    resize: none;
+    height: 268px;
+  }
+  
+  .orDiv{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #939399;
+    margin: 16px;
+  }
+  
+  .askADoubtPopupInputField{
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 4px
+  }
+  
+  .customButton {
+    width: 205px;
+    border: none;
+    font-size: 14px;
+    font-weight: 350;
+    text-align: center;
+    padding: 12px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #7F5CF4;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  
+  .customButtondisabled{
+    width: 75%;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    padding: 12px;
+    color: #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 27px;
+    background: #ECECEC;
+    cursor: not-allowed;
+  }
+  
+  .uploadHolder{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .scannerContainer {
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .scannerRight {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0%;
+    border-left: solid 2px #5e93ff;
+  
+    background-image: linear-gradient(
+      270deg,
+      rgba(157, 255, 133, 0) -22%,
+      #5cf548 99%
+    );
+    animation: moveRight 2s infinite;
+    background-image: linear-gradient(270deg, #9752ff8f, #5e93ff8f);
+  }
+  
+  .scannerLeft {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    border-right: solid 2px #5e93ff;
+    right: 0%;
+    background-image: linear-gradient(
+      90deg,
+      rgba(157, 255, 133, 0) -22%,
+      #5cf548 99%
+    );
+    animation: moveLeft 2s infinite;
+    background-image: linear-gradient(90deg, #9752ff8f, #5e93ff8f);
+  }
+  
+  @keyframes moveRight {
+    0% {
+      left: 0%;
+    }
+    50% {
+      left: 100%;
+    }
+    100% {
+      left: 0%;
+    }
+  }
+  
+  @keyframes moveLeft {
+    0% {
+      right: 100%;
+    }
+    50% {
+      right: 0%;
+    }
+    100% {
+      right: 100%;
+    }
+  }
+  
+  .scannerBody {
+    position: relative;
+    height: 10px;
+  }
+  
+  .thumbnailContainer::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  
+  .thumbnailContainer::-webkit-scrollbar:vertical {
+    width: 12px;
+  }
+  
+  .thumbnailContainer::-webkit-scrollbar:horizontal {
+    height: 12px;
+  }
+  
+  .thumbnailContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+  
+  .thumbnailContainer::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+  
+  .cameraImageCropperContainer::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 100%;
+    display: none;
+  }
+  
+  .cameraImageCropperContainer {
+    height: 100%;
+  }
+  
+  .uploadFileError {
+    color: #ff5c85;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+  }
+  
+  .cameraImageButtonConatiner {
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 10;
+    bottom: 34px;
+  }
+  
+  .cameraImageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cameraImageCropper {
+    padding: 0;
+    height: 100%;
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .webcammodal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background-color: #000;
+  }
+  
+  .modalBody {
+    text-align: center;
+  }
+  
+  
+  .feedbackTitle {
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #333;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .feedbackSubTitle {
+    text-align: center;
+    color: #666666;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+  
+  .modalImage {
+    height: 200px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .askAnotherQuestion {
+    width: 380px;
+    height: 48px;
+    border: none;
+    margin-top: 30px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 20px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 27px;
+    box-shadow: 0 3px 6px 0 rgba(91, 22, 170, 0.17);
+    background-image: linear-gradient(to right, #9752ff, #5e93ff);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  
+  @media only screen and (max-width: 767.98px) {
+    .closeButton {
+      right: 18px;
+      top: 12px;
+    }
+  
+    .landingPopupButton {
+      font-size: 20px;
+      padding: 5px 20px;
+    }
+  
+    .feedbackSuggestions {
+      height: 30px;
+      font-size: 12px;
+      line-height: 12px;
+      padding: 8px 14px;
+      margin: 0 12px 12px 0;
+    }
+  
+    .landingModalButtonDiv {
+      padding: 15px 0;
+    }
+  
+    .sendFeedbackButton {
+      width: 250px;
+      height: 40px;
+      margin-top: 20px;
+    }
+  
+    .crossIcon {
+      top: 12px;
+      right: 12px;
+    }
+  
+    .feedbackModal {
+      padding: 11px;
+    }
+  
+    .popupTitle {
+      margin-top: 20px;
+    }
+  
+    .feedbackTitle {
+      margin-top: 34px;
+      font-size: 15px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.53;
+      letter-spacing: normal;
+      color: #333;
+    }
+  
+    .askAnotherQuestion {
+      width: 100%;
+      height: 40px;
+      font-size: 14px;
+    }
+  }
+  
+  .cameraIcons {
+    color: #000;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    right: 10px;
+    top: 10px;
+    width: 60px;
+  }
+  
+  .flashIcon {
+    margin-right: 20px;
+  }
+  
+  .bottomSection {
+    position: absolute;
+    bottom: 20px;
+    margin-bottom: 25px;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 40px;
+  }
+  
+  .bottomSectionDesktop{
+    display: grid;
+    grid-template-columns: 40px 40px 1fr 40px;
+    column-gap: 10px;
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+  
+  .bottomControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .cameraStatusContainer {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    align-self: stretch;
+    justify-content: space-between;
+    background: #3B3B3B;
+    border-radius: 12px;
+    height: 58px;
+    padding: 20px;
+  }
+  
+  .subtext {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    color: #FFFFFF;
+    margin-left: 10px;
+    /* font-family: 'SF Pro Text'; */
+  }
+  
+  .borderCotainer {
+    display: flex;
+    width: 90%;
+    padding: 9px;
+    /* Monotones/Pearl White */
+  
+    border: 1px solid #FFFFFF3D;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-top: 24px;
+    
+  }
+  
+  .settingsBtn {
+    width: 100%;
+    height: 48px;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    background: #7F5CF4;
+    border-radius: 4px;
+  }
+  
+  .cameraLabel {
+    color: white;
+    margin-left: 10px;
+  }
+  
+  .allowCamera {
+    width: 100%;
+    height: 48px;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    background: #7F5CF4;
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+  
