@@ -1,0 +1,790 @@
+.byjus_search_widget_searchBarHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.byjus_search_widget_searchBarHolder p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.byjus_search_widget_showinmobile {
+  display: none !important;
+}
+.byjus_search_widget_showindesktop {
+  display: block !important;
+}
+
+
+
+.byjus_search_widget_searchBar {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 5px;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  align-items: center;
+  border: 1px solid #b0b0b0;
+  padding: 8px 10px;
+  z-index: 1;
+  width: 100%;
+  color: #999999;
+}
+
+.byjus_search_widget_searchBar input {
+  font-size: 16px;
+  width: 100%;
+  border: none !important;
+  outline: none;
+  text-overflow: ellipsis;
+  font-family: inherit;
+}
+
+.byjus_search_widget_searchBar input:focus-visible {
+  width: 100%;
+  border: none !important;
+  outline: none;
+}
+
+.byjus_search_widget_searchBar input::placeholder {
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+.byjus_search_widget_buttonContainer {
+  display: grid;
+  /* grid-template-columns: auto auto auto; */
+  grid-template-columns: auto auto;
+  column-gap: 8px;
+  margin-right: 7px;
+  margin-top: 4px;
+}
+
+.byjus_search_widget_crossButtonHolder div {
+  height: 14px;
+  width: 14px;
+}
+
+.byjus_search_widget_buttonHolder {
+  align-items: center;
+  vertical-align: middle;
+  display: flex !important;
+  justify-content: center;
+}
+
+.byjus_search_widget_icon {
+  cursor: pointer;
+}
+
+.byjus_search_widget_modal {
+  padding: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landscapeBlocker{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999999999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerCircleCapture {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8C69FF;
+}
+.innerCircleCapture svg{
+  transform: translate(3px, 2px);  
+}
+
+
+.byjus_search_widget_suggestionHolder {
+  position: absolute;
+  left: -1px;
+  background: white;
+  max-height: 90vh;
+  width: calc(100% + 2px);
+  border: 1px solid #b0b0b0;
+  border-top: none;
+  top: 20px;
+  padding-top: 40px;
+  z-index: -1;
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  overflow: hidden;
+  border-top-left-radius: 0;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+.byjus_search_widget_searchbuttonHolder {
+  margin-left: 4px;
+}
+
+.byjus_search_widget_askADoubtPopupTopbannerCrossIcon{
+  position: absolute;
+  right: 24px;
+  height: 40px;
+  width: 40px;
+  top:36px;
+}
+
+
+.byjus_search_widget_cameraButtonHolder1 div {
+  height: 36px;
+  width: 36px;
+}
+
+.byjus_search_widget_cameraButtonHolder2 div {
+  height: 24px;
+  width: 24px;
+}
+
+.byjus_search_widget_suggestionBox {
+  padding: 12px 24px;
+  border-top: 1px solid #f3f3f3;
+  color: #000;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: -0.3px;
+  display: grid;
+  grid-template-columns: auto 25px;
+  align-items: center;
+}
+
+.byjus_search_widget_historyBox {
+  padding: 12px 24px;
+  border-top: 1px solid #f3f3f3;
+  color: #000;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.3px;
+  display: grid;
+  grid-template-columns: 30px auto 25px;
+  align-items: center;
+}
+
+.byjus_search_widget_historyBox div {
+  overflow-y: auto;
+}
+.byjus_search_widget_historyBox div::-webkit-scrollbar {
+  display: none;
+}
+
+.byjus_search_widget_suggestionBox div {
+  overflow-y: auto;
+}
+
+.byjus_search_widget_suggestionBox div::-webkit-scrollbar {
+  display: none;
+}
+
+.hideImage img{
+  max-width: 100%;
+  display: none;
+}
+
+.byjus_search_widget_clockIcon {
+  padding-top: 10px;
+}
+
+.byjus_search_widget_suggestionBox:hover {
+  background: #f2f2f2;
+}
+
+.byjus_search_widget_historyBox:hover {
+  background: #f2f2f2;
+}
+
+.byjus_search_widget_myQuestionHolder {
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgb(84 84 84 / 12%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  height: 56px;
+  width: 63px;
+}
+
+.byjus_search_widget_myQuestionHolder div {
+  height: 36px;
+  width: 36px;
+}
+
+.byjus_search_widget_searchbuttonHolder div {
+  height: 24px;
+  width: 24px;
+}
+
+.byjus_search_widget_uploadButtonHolder {
+  width: 520px;
+  height: 48px;
+  margin-top: 30px;
+  position: relative;
+}
+
+
+
+/* Webcam */
+
+.webcammodal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #000;
+}
+
+.cameraBackIcon {
+  position: absolute;
+  left: 20px;
+  z-index: 11;
+  top: 20px;
+}
+
+.cameraIcons {
+  color: #000;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  right: 20px;
+  top: 20px;
+  width: 60px;
+}
+
+.cameraError {
+  position: relative;
+  text-align: center;
+  margin-top: 150px;
+  flex-grow: 0;
+  border-radius: 10px;
+  padding: 30px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.errorTitle {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.flashIcon {
+  margin-right: 20px;
+}
+
+.galleryButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.cameraMessage {
+  width: max-content;
+  height: 35px;
+  padding: 0 15px;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  color: #fff;
+}
+
+.typeButton {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.clickPicture {
+  width: 75px;
+  height: 75px;
+  border: 5px solid #8C69FF;
+  border-radius: 50%;
+  background-color: white;
+}
+
+
+.bottomControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cameraStatusContainer {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  align-self: stretch;
+  justify-content: space-between;
+  background: #3B3B3B;
+  border-radius: 12px;
+  height: 58px;
+  padding: 20px;
+}
+
+.subtext {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  color: #FFFFFF;
+  margin-left: 10px;
+  /* font-family: 'SF Pro Text'; */
+}
+
+.borderCotainer {
+  display: flex;
+  width: 90%;
+  padding: 9px;
+  /* Monotones/Pearl White */
+
+  border: 1px solid #FFFFFF3D;
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin-top: 24px;
+  
+}
+
+.settingsBtn {
+  width: 90%;
+  height: 48px;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  /* background: #7F5CF4; */
+  border-radius: 4px;
+}
+
+.centerMarker {
+  position: absolute;
+  top: 43%;
+  width: 100%;
+  text-align: center;
+}
+
+.fileSelector {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  top: 0;
+  cursor: pointer;
+  left: 0;
+  z-index: 2;
+}
+
+
+.webcamClass {
+  height: 100vh;
+  width: 100%;
+  background-color: #000000;
+}
+
+.cameraLabel {
+  color: white;
+  margin-left: 10px;
+}
+
+.allowCamera {
+  width: 100%;
+  height: 48px;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  background: #7F5CF4;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.closeIcon {
+  position: absolute;
+  cursor: pointer;
+  top: 14px;
+  right: 11px;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fileBody {
+  padding: 24px 70px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px dashed #d9d9d9;
+  background: white;
+  display: inline-block;
+}
+
+
+.black {
+  font-weight: 700;
+  font-size: 20px;
+  color: #333;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.popupTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 24px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+}
+
+
+.scannerContainer {
+  position: absolute;
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  border:solid 3px #8C69FF;
+  left: 0;
+  overflow: hidden;
+}
+
+.scannerRight {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0%;
+  border-left: solid 2px #8C69FF;
+  animation: moveRight 2s infinite;
+  background-image: linear-gradient(270deg, #f5f5f58f, #f5f5f58f);
+}
+
+.scannerLeft {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  border-right: solid 2px #8C69FF;
+  right: 0%;
+  animation: moveLeft 2s infinite;
+  background-image: linear-gradient(90deg, rgb(140, 105, 255, 0.4), rgb(140, 105, 255, 0.40));
+}
+
+@keyframes moveRight {
+  0% {
+    left: 0%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    right: 100%;
+  }
+  50% {
+    right: 0%;
+  }
+  100% {
+    right: 100%;
+  }
+}
+
+.scannerBody {
+  position: relative;
+  height: 10px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.askADoubtPopupTopbannerCrossIcon{
+  position: absolute;
+  right: 24px;
+  top: 32px;
+  height: 40px;
+  width: 40px;
+}
+
+
+.bottomSectionDesktop{
+  display: grid;
+  grid-template-columns: 40px 40px 1fr 40px;
+  column-gap: 10px;
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+
+.purple {
+  color: #a373ac;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.askADoubtPopupTopbanner{
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  column-gap: 15px;
+  margin-bottom: 20px;
+}
+.askADoubtPopupTopbannerIcons{
+  transform: translate(0, -4px);
+}
+
+.askADoubtPopupTopbannerTitle{
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+
+
+.scannedThumbnailContainer {
+  width: 90%;
+  position: relative;
+  margin: auto;
+}
+
+.customButton {
+  width: 205px;
+  border: none;
+  font-size: 14px;
+  font-weight: 350;
+  text-align: center;
+  padding: 12px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #7F5CF4;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+
+.circle {
+  border: 1px dashed #d9d9d9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 62px;
+  height: 62px;;
+}
+
+.circleHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.fileSelector {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  top: 0;
+  cursor: pointer;
+  left: 0;
+  z-index: 2;
+}
+
+.bottomSection {
+  position: absolute;
+  bottom: 20px;
+  margin-bottom: 25px;
+  z-index: 10;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.allowCamera {
+  width: 100%;
+  height: 48px;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  background: #7F5CF4;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.errorText {
+  color: white;
+  opacity: 0.5;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+
+.cameraImageCropper {
+  padding: 0;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+
+
+/*  */
+
+
+
+@media only screen and (max-width: 767.98px) {
+
+
+.cameraImageCropper {
+  height: 100vh;
+}
+  
+  
+  .byjus_search_widget_showinmobile {
+    display: block !important;
+  }
+
+  .byjus_search_widget_showindesktop {
+    display: none !important;
+  }
+
+  .byjus_search_widget_searchBar input {
+    font-size: 12px;
+  }
+  .byjus_search_widget_searchBar input::placeholder {
+    font-size: 12px;
+  }
+
+  .byjus_search_widget_searchBar{
+    padding: 8px
+  }
+
+  .byjus_search_widget_historyBox {
+    font-size: 12px;
+  }
+  .byjus_search_widget_modal {
+    padding: 20px;
+  }
+
+  .byjus_search_widget_thumbnailContainer {
+    max-height: 40vh;
+  }
+
+  .byjus_search_widget_uploadButtonHolder {
+    width: 100%;
+    height: 40px;
+  }
+
+
+  .byjus_search_widget_cameraImageCropperContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    padding: 0;
+    /* position: relative; */
+    overflow: scroll;
+  }
+
+  .byjus_search_widget_popupTitle {
+    margin-top: 40px;
+  }
+
+  .byjus_search_widget_searchbuttonHolder div {
+    height: 24px;
+    width: 24px;
+  }
+
+  .byjus_search_widget_cameraButtonHolder1 div {
+    height: 25px;
+    width: 25px;
+  }
+
+  .byjus_search_widget_cameraButtonHolder2 div {
+    height: 25px;
+    width: 25px;
+  }
+
+  .byjus_search_widget_myQuestionHolder {
+    height: 48px;
+    width: 58px;
+  }
+  .byjus_search_widget_myQuestionHolder div {
+    height: 31px;
+    width: 31px;
+  }
+}
+
+
+
