@@ -77,7 +77,7 @@ export const SearchbarComponent = (props) => {
 
     function handleBrowserState(type){
         if(type.type == 'blur'){
-            // setOpen(false);
+            setOpen(false);
         }
     }
 
@@ -178,7 +178,7 @@ export const SearchbarComponent = (props) => {
     function cameraClick(){
         setOpen(o => !o);
         setopenMobileCam(true);
-        // openFullscreen();
+        openFullscreen();
         clearSearch()
     }
 
