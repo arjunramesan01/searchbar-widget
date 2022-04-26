@@ -252,8 +252,9 @@ const ImageSearchPopup = (props) => {
       }
     }
 
+
     return (
-        <div>
+        <div style={{'height' : '100%'}}>
             { openMobileCam &&
             <div className={styles.webcammodal}>
                 <div className={styles.cameraBackIcon} onClick={stopWebCam}>
@@ -349,7 +350,7 @@ const ImageSearchPopup = (props) => {
                     <Cropper
                         src={imageData}
                         className="cropper"
-                        style={{ height: "100vh", width:"auto"}}
+                        style={{ height: "100%", width:"auto"}}
                         autoCropArea={0.9}
                         initialAspectRatio={25 / 9}
                         guides={false}
@@ -394,7 +395,7 @@ const ImageSearchPopup = (props) => {
                             <div style={imageFinalized==false ? {display:'block'} : { display: 'none'}}>
                                 <Cropper
                                     src={imageData}
-                                    style={{ height: "100vh", width:"auto"}}
+                                    style={{ height: "100%", width:"auto"}}
                                     autoCropArea={0.9}
                                     initialAspectRatio={25 / 9}
                                     guides={false}

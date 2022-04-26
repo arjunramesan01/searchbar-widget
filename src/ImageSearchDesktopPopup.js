@@ -184,7 +184,8 @@ const ImageSearchDesktopPopup = (props) => {
                         <div className={styles.pointer} onClick={handleRotateLeft}><img src={"https://search-static-stg.byjusweb.com/assets/rotateleft.png"} alt="loader" height="40" width="40"></img></div>
                         <div className={styles.pointer} onClick={handleRotate}><img src={"https://search-static-stg.byjusweb.com/assets/rotateright.png"} alt="loader" height="40" width="40"></img></div>
                         <div></div>
-                        <div className={styles.pointer} onClick={handleRetake}><img src={"https://search-static-stg.byjusweb.com/assets/retakedesktop.png"} alt="loader" height="40" width="40"></img></div>
+                        <div></div>
+                        {/* <div className={styles.pointer} onClick={handleRetake}><img src={"https://search-static-stg.byjusweb.com/assets/retakedesktop.png"} alt="loader" height="40" width="40"></img></div> */}
                     </div>
                     <div className={styles.customButton} onClick={()=>{finalizeImage()}}>Continue</div>
                 </div>

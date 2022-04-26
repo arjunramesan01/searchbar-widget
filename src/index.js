@@ -20,7 +20,7 @@ export const SearchbarComponent = (props) => {
     var [ routeUrl, setRouteUrl] = useState(null);
     var [isTablet, setIsTablet] = useState(false);
     var [isLandscape, setIsLandscape] = useState(false);
-    const overlayStyle = {'background': 'rgba(0,0,0,0.5)',  'zIndex': 1003};
+    const overlayStyle = {'background': 'rgba(0,0,0,0.5)',  'zIndex': 999999999};
 
     const typeDelay = 500;
     const MathjaxConfig = {tex2jax: { inlineMath: [ ["\\$", "\\$"], ["\\(", "\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },"HTML-CSS": {styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}, '.MathJax .merror': {'display': 'none'}}, linebreaks: { automatic:true }}, SVG: { linebreaks: { automatic: true } }}
@@ -40,7 +40,7 @@ export const SearchbarComponent = (props) => {
         boxShadow: '0 15px 15px 0 rgb(0 0 0 / 12%), 0 5px 15px 0 rgb(0 0 0 / 20%)',
         background: '#F6F6F6',
         border: 'none',
-        padding:'40px 24px',
+        padding: '30px',
         width: '440px',
     };
 
@@ -68,7 +68,16 @@ export const SearchbarComponent = (props) => {
         setIsTablet(detectMob());
         checkOrientation()
         window.addEventListener("orientationchange", checkOrientation, false);
+
+        window.addEventListener("focus", handleBrowserState.bind(true));
+        window.addEventListener("blur", handleBrowserState.bind(false));   
     },[])
+
+    function handleBrowserState(type){
+        if(type.type == 'blur'){
+            // setOpen(false);
+        }
+    }
 
 
     useEffect(() => {
@@ -167,7 +176,7 @@ export const SearchbarComponent = (props) => {
     function cameraClick(){
         setOpen(o => !o);
         setopenMobileCam(true);
-        openFullscreen();
+        // openFullscreen();
         clearSearch()
     }
 

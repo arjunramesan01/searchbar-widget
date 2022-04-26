@@ -93,7 +93,7 @@
   top: 0;
   left: 0;
   background: white;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   z-index: 999999999999;
   display: flex;
@@ -254,7 +254,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #000;
 }
@@ -420,7 +420,7 @@
 
 
 .webcamClass {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: #000000;
 }
@@ -558,7 +558,7 @@
 .askADoubtPopupTopbannerCrossIcon{
   position: absolute;
   right: 24px;
-  top: 32px;
+  top: 24px;
   height: 40px;
   width: 40px;
 }
@@ -583,7 +583,8 @@
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   column-gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color:black;
 }
 .askADoubtPopupTopbannerIcons{
   transform: translate(0, -4px);
@@ -706,7 +707,7 @@
 
 
 .cameraImageCropper {
-  height: 100vh;
+  height: 100%;
 }
   
   
