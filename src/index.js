@@ -71,6 +71,8 @@ export const SearchbarComponent = (props) => {
 
         window.addEventListener("focus", handleBrowserState.bind(true));
         window.addEventListener("blur", handleBrowserState.bind(false));   
+
+        console.log('v1-widget')
     },[])
 
     function handleBrowserState(type){
