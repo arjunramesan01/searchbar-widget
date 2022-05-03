@@ -33,7 +33,7 @@ const ImageSearchDesktopPopup = (props) => {
         var img = new Image();
         setImageFinalized(true);
         img.src = croppedImageData.getCroppedCanvas().toDataURL();
-        blob = croppedImageData.getCroppedCanvas().toDataURL("image/jpeg",0.7);
+        blob = croppedImageData.getCroppedCanvas().toDataURL("image/jpeg",0.5);
         search_lo_by_image(blob).then(r=>r.json()).then(res=>{
             props.setOpenDesktopPopup(false)
             if(res['text']){
