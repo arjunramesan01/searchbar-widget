@@ -303,9 +303,9 @@ export const SearchbarComponent = (props) => {
 
 
     function showHistory(limit){
-        // getSearchHistory(limit).then(r=>r.json()).then(res=>{
-        //     setHistory(res['questions_asked']);
-        //  })
+        getSearchHistory(limit).then(r=>r.json()).then(res=>{
+            setHistory(res['questions_asked']);
+         })
     }
 
     function getSearchHistory(limit){
