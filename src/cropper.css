@@ -49,6 +49,10 @@
   overflow: hidden;
 }
 
+.cropper-wrap-box {
+  background-color: #000;
+}
+
 .cropper-drag-box {
   background-color: #fff;
   opacity: 0;
