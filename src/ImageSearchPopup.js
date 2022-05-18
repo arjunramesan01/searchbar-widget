@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Cropper from 'react-cropper'
 import Webcam from 'react-webcam'
 import styles from './styles.module.css'
@@ -254,123 +254,280 @@ const ImageSearchPopup = (props) => {
     }
   }
 
+  const renderCameraHeaderIcons = () => {
+    return (
+      <Fragment>
+        <div className={styles.cameraBackIcon} onClick={stopWebCam}>
+          <CrossIcon height={15} width={15} fill={'#fff'} />
+        </div>
+        <div className={styles.cameraIcons}>
+          <div>{/* <HelpIcon height={24} width={24} /> */}</div>
+          <div>
+            <FlashIcon
+              onClick={toggleFlash}
+              height={24}
+              width={18}
+              fill={'white'}
+            />
+          </div>
+        </div>
+      </Fragment>
+    )
+  }
+
+  const renderCameraPermissionRequiredMessage = () => {
+    return (
+      <div className={styles.cameraError}>
+        <CameraIcon height={48} width={48} />
+        <label className={styles.errorTitle}>Camera access required</label>
+        <label className={styles.errorText}>
+          It allows you to upload an image of your doubt and interact with
+          experts on video call
+        </label>
+        <button
+          className={styles.allowCamera}
+          onClick={requestMediaPersmissions}
+        >
+          Allow camera access
+        </button>
+      </div>
+    )
+  }
+
+  const renderCameraErrorMessage = () => {
+    return (
+      <div className={styles.cameraError}>
+        <CameraIcon height={48} width={48} />
+        <label className={styles.errorTitle}>
+          Camera access is required to proceed
+        </label>
+        <label className={styles.errorText}>
+          Allow Instant Doubt Solver to access your camera in your settings, as
+          this will allow you to discuss your doubt with the expert.
+        </label>
+        <div className={styles.borderCotainer}>
+          <div className={styles.cameraStatusContainer}>
+            <div className={styles.flex}>
+              <CameraAlternateIcon />
+              <label className={styles.subtext}>Camera</label>
+            </div>
+            <ToggleIcon onClick={requestMediaPersmissions} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderWebcamSection = () => {
+    return (
+      <div className='webcamWrapper'>
+        {mediaPermissionsGranted && (
+          <div className='webcamContainer'>
+            <Webcam
+              height={camHeight >= camWidth ? camHeight : null}
+              width={camWidth > camHeight ? camWidth : null}
+              className={styles.webcamClass}
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat='image/jpeg'
+              videoConstraints={videoConstraints}
+              onUserMediaError={videoError}
+            />
+            <div className={styles.centerMarker}>
+              <CameraMarkerIcon />
+            </div>
+            <div className={styles.bottomSection}>
+              <div className={styles.cameraMessage}>
+                Take a photo of the question
+              </div>
+              <div className={styles.bottomControls}>
+                <div className={styles.galleryButton}>
+                  <GalleryIcon />
+                  <label className={styles.cameraLabel}>Gallery</label>
+                  <input
+                    className={styles.fileSelector}
+                    id='uploadFile'
+                    type='file'
+                    accept='image/*'
+                    onChange={(e) => {
+                      dragNdrop(e)
+                    }}
+                  ></input>
+                </div>
+                <div
+                  className={styles.clickPicture}
+                  onClick={() => {
+                    mediaPermissionsGranted && capture()
+                  }}
+                >
+                  <div className={styles.innerCircle}></div>
+                </div>
+                <div className={styles.typeButton} onClick={handleTypeQuestion}>
+                  <KeyboardIcon />
+                  <label className={styles.cameraLabel}>Type</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!mediaPermissionsGranted && renderCameraErrorMessage()}
+      </div>
+    )
+  }
+
+  const renderCameraBottomControlsSection = () => {
+    return (
+      <div className={styles.bottomSection}>
+        <label className={styles.cameraMessage}>
+          Fit only
+          <span className={styles.purple}>one question</span>in a box
+        </label>
+        <div className={styles.bottomControls}>
+          <div className={styles.galleryButton}>
+            <CameraIcon height={25} width={25} />
+            <label className={styles.cameraLabel}>Retake</label>
+            <input
+              className={styles.fileSelector}
+              id='uploadFile'
+              type='file'
+              accept='image/*'
+              onChange={(e) => {
+                dragNdrop(e)
+              }}
+            ></input>
+          </div>
+          <div
+            className={styles.captureButton + ' ' + styles.clickPicture}
+            onClick={finalizeImage}
+          >
+            <div className={styles.innerCircleCapture}>
+              <svg
+                fill='none'
+                preserveAspectRatio='xMidYMid meet'
+                height='32'
+                width='20'
+                viewBox='0 0 23 18'
+              >
+                <path
+                  d='M17 1L6 12L1 7'
+                  stroke='white'
+                  stroke-width='2'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div className={styles.typeButton} onClick={handleRotate}>
+            <RetakeIcon height={25} width={25} />
+            <label className={styles.cameraLabel}>Rotate</label>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderFindingSolutionAnimationSection = () => {
+    return (
+      <div>
+        <div className={styles.popupTitle}>Finding solution...</div>
+        <br></br>
+        <div className={styles.scannedThumbnailContainer}>
+          <div className={styles.scannerContainer}>
+            <div className={styles.scannerRight}></div>
+            <div className={styles.scannerLeft}></div>
+          </div>
+          <img
+            src={croppedImageData.getCroppedCanvas().toDataURL()}
+            width='100%'
+            height='100%'
+            alt='croppedImage'
+          ></img>
+        </div>
+      </div>
+    )
+  }
+
+  const renderPostPhotoClickedSection = () => {
+    return (
+      <div className='photoClickSection'>
+        <div
+          className={styles.cameraBackIcon}
+          onClick={() => {
+            props.setOpen(false)
+          }}
+        >
+          <CrossIcon height={15} width={15} fill={'white'} />
+        </div>
+        {/* <div className={styles.cameraImageCropperContainer}> */}
+        <Cropper
+          src={imageData}
+          className='cropper'
+          style={{ height: '100%', width: 'auto', backgroundColor: '#000' }}
+          autoCropArea={0.9}
+          initialAspectRatio={25 / 9}
+          guides={false}
+          crop={onCrop}
+          ref={cropperRef}
+          dragMode={'none'}
+        />
+        {/* </div> */}
+        <div className={styles.bottomSection}>
+          <div className={styles.cameraMessage}>
+            Fit<span className={styles.purple}>one question</span>in the box
+          </div>
+          <div className={styles.bottomControls}>
+            <div className={styles.galleryButton} onClick={handleRetake}>
+              <CameraIcon height={20} width={20} />
+              <label className={styles.cameraLabel}>Retake</label>
+              {/* <input className={styles.fileSelector} id="uploadFile" type="file" accept="image/*"></input> */}
+            </div>
+            <div
+              className={styles.captureButton + ' ' + styles.clickPicture}
+              onClick={finalizeImage}
+            >
+              <div
+                className={styles.innerCircleCapture}
+                onClick={finalizeImage}
+              >
+                <svg
+                  fill='none'
+                  preserveAspectRatio='xMidYMid meet'
+                  height='32'
+                  width='20'
+                  viewBox='0 0 23 18'
+                >
+                  <path
+                    d='M17 1L6 12L1 7'
+                    stroke='white'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div className={styles.typeButton} onClick={handleRotate}>
+              <RotateIcon />
+              <label className={styles.cameraLabel}>Rotate</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div style={{ height: '100%', display: 'flex', width: '100%' }}>
+    <div
+      className='imageSearchPopupWrapper'
+      style={{ height: '100%', display: 'flex', width: '100%' }}
+    >
       {openMobileCam && (
         <div className={styles.webcammodal}>
-          <div className={styles.cameraBackIcon} onClick={stopWebCam}>
-            <CrossIcon height={15} width={15} fill={'#fff'} />
-          </div>
-          <div className={styles.cameraIcons}>
-            <div>{/* <HelpIcon height={24} width={24} /> */}</div>
-            <div>
-              <FlashIcon
-                onClick={toggleFlash}
-                height={24}
-                width={18}
-                fill={'white'}
-              />
-            </div>
-          </div>
-
-          {firstUser && (
-            <div className={styles.cameraError}>
-              <CameraIcon height={48} width={48} />
-              <label className={styles.errorTitle}>
-                Camera access required
-              </label>
-              <label className={styles.errorText}>
-                It allows you to upload an image of your doubt and interact with
-                experts on video call
-              </label>
-              <button
-                className={styles.allowCamera}
-                onClick={requestMediaPersmissions}
-              >
-                Allow camera access
-              </button>
-            </div>
-          )}
-          {!firstUser && (
-            <div>
-              {mediaPermissionsGranted && (
-                <div>
-                  <Webcam
-                    height={camHeight >= camWidth ? camHeight : null}
-                    width={camWidth > camHeight ? camWidth : null}
-                    className={styles.webcamClass}
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat='image/jpeg'
-                    videoConstraints={videoConstraints}
-                    onUserMediaError={videoError}
-                  />
-                  <div className={styles.centerMarker}>
-                    <CameraMarkerIcon />
-                  </div>
-                  <div className={styles.bottomSection}>
-                    <div className={styles.cameraMessage}>
-                      Take a photo of the question
-                    </div>
-                    <div className={styles.bottomControls}>
-                      <div className={styles.galleryButton}>
-                        <GalleryIcon />
-                        <label className={styles.cameraLabel}>Gallery</label>
-                        <input
-                          className={styles.fileSelector}
-                          id='uploadFile'
-                          type='file'
-                          accept='image/*'
-                          onChange={(e) => {
-                            dragNdrop(e)
-                          }}
-                        ></input>
-                      </div>
-                      <div
-                        className={styles.clickPicture}
-                        onClick={() => {
-                          mediaPermissionsGranted && capture()
-                        }}
-                      >
-                        <div className={styles.innerCircle}></div>
-                      </div>
-                      <div
-                        className={styles.typeButton}
-                        onClick={handleTypeQuestion}
-                      >
-                        <KeyboardIcon />
-                        <label className={styles.cameraLabel}>Type</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {!mediaPermissionsGranted && (
-                <div className={styles.cameraError}>
-                  <CameraIcon height={48} width={48} />
-                  <label className={styles.errorTitle}>
-                    Camera access is required to proceed
-                  </label>
-                  <label className={styles.errorText}>
-                    Allow Instant Doubt Solver to access your camera in your
-                    settings, as this will allow you to discuss your doubt with
-                    the expert.
-                  </label>
-                  <div className={styles.borderCotainer}>
-                    <div className={styles.cameraStatusContainer}>
-                      <div className={styles.flex}>
-                        <CameraAlternateIcon />
-                        <label className={styles.subtext}>Camera</label>
-                      </div>
-                      <ToggleIcon onClick={requestMediaPersmissions} />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
+          {renderCameraHeaderIcons()}
+          {firstUser && renderCameraPermissionRequiredMessage()}
+          {!firstUser && renderWebcamSection()}
           {!mediaPermissionsGranted && !firstUser && (
             <div className={styles.bottomSection}>
               <div
@@ -379,198 +536,65 @@ const ImageSearchPopup = (props) => {
                 dangerouslySetInnerHTML={{
                   __html: 'Settings > Permissions > Camera > Grant permission'
                 }}
-              ></div>
+              />
             </div>
           )}
         </div>
       )}
 
       {isCameraImageUploaded &&
-        !fileUploadError &&
-        imageUploaded &&
-        !imageFinalized && (
-          <div>
+      !fileUploadError &&
+      imageUploaded &&
+      !imageFinalized
+        ? renderPostPhotoClickedSection()
+        : !openMobileCam && (
             <div
-              className={styles.cameraBackIcon}
-              onClick={() => {
-                props.setOpen(false)
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center'
               }}
+              className={`galleryPhotoSelectSection`}
             >
-              <CrossIcon height={15} width={15} fill={'white'} />
-            </div>
-            {/* <div className={styles.cameraImageCropperContainer}> */}
-            <Cropper
-              src={imageData}
-              className='cropper'
-              style={{ height: '100%', width: 'auto' }}
-              autoCropArea={0.9}
-              initialAspectRatio={25 / 9}
-              guides={false}
-              crop={onCrop}
-              ref={cropperRef}
-              dragMode={'none'}
-            />
-            {/* </div> */}
-            <div className={styles.bottomSection}>
-              <div className={styles.cameraMessage}>
-                Fit<span className={styles.purple}>one question</span>in the box
-              </div>
-              <div className={styles.bottomControls}>
-                <div className={styles.galleryButton} onClick={handleRetake}>
-                  <CameraIcon height={20} width={20} />
-                  <label className={styles.cameraLabel}>Retake</label>
-                  {/* <input className={styles.fileSelector} id="uploadFile" type="file" accept="image/*"></input> */}
+              {imageFinalized == false && !isCameraImageUploaded && (
+                <div className={styles.closeIcon} onClick={closeModal}>
+                  <CrossIcon height={15} width={15} fill={'#fff'} />
                 </div>
-                <div
-                  className={styles.captureButton + ' ' + styles.clickPicture}
-                  onClick={finalizeImage}
-                >
-                  <div
-                    className={styles.innerCircleCapture}
-                    onClick={finalizeImage}
-                  >
-                    <svg
-                      fill='none'
-                      preserveAspectRatio='xMidYMid meet'
-                      height='32'
-                      width='20'
-                      viewBox='0 0 23 18'
-                    >
-                      <path
-                        d='M17 1L6 12L1 7'
-                        stroke='white'
-                        strokeWidth='2'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-                <div className={styles.typeButton} onClick={handleRotate}>
-                  <RotateIcon />
-                  <label className={styles.cameraLabel}>Rotate</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      {!openMobileCam && (
-        <div className={styles.fileUploadDiv}>
-          <div
-            className={styles.cameraImageCropper}
-            style={{ display: 'flex' }}
-          >
-            {imageFinalized == false && !isCameraImageUploaded && (
-              <div className={styles.closeIcon} onClick={closeModal}>
-                <img
-                  src={
-                    'https://search-static-stg.byjusweb.com/assets/cross1.png'
-                  }
-                  width='16'
-                  height='14'
-                  alt='close'
-                ></img>
-              </div>
-            )}
-
-            {!fileUploadError && imageUploaded == true && (
-              <div style={{ alignSelf: 'center' }}>
-                {!isCameraImageUploaded && (
-                  <div
-                    style={
-                      imageFinalized == false
-                        ? { display: 'block' }
-                        : { display: 'none' }
-                    }
-                  >
-                    <Cropper
-                      src={imageData}
-                      style={{ height: '100%', width: 'auto' }}
-                      autoCropArea={0.9}
-                      initialAspectRatio={25 / 9}
-                      guides={false}
-                      crop={onCrop}
-                      ref={cropperRef}
-                      dragMode={'none'}
-                    />
-                    <div className={styles.bottomSection}>
-                      <label className={styles.cameraMessage}>
-                        Fit only
-                        <span className={styles.purple}>one question</span>in a
-                        box
-                      </label>
-                      <div className={styles.bottomControls}>
-                        <div className={styles.galleryButton}>
-                          <CameraIcon height={25} width={25} />
-                          <label className={styles.cameraLabel}>Retake</label>
-                          <input
-                            className={styles.fileSelector}
-                            id='uploadFile'
-                            type='file'
-                            accept='image/*'
-                            onChange={(e) => {
-                              dragNdrop(e)
-                            }}
-                          ></input>
-                        </div>
-                        <div
-                          className={
-                            styles.captureButton + ' ' + styles.clickPicture
-                          }
-                          onClick={finalizeImage}
-                        >
-                          <div className={styles.innerCircleCapture}>
-                            <svg
-                              fill='none'
-                              preserveAspectRatio='xMidYMid meet'
-                              height='32'
-                              width='20'
-                              viewBox='0 0 23 18'
-                            >
-                              <path
-                                d='M17 1L6 12L1 7'
-                                stroke='white'
-                                stroke-width='2'
-                                stroke-linecap='round'
-                                stroke-linejoin='round'
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                        <div
-                          className={styles.typeButton}
-                          onClick={handleRotate}
-                        >
-                          <RetakeIcon height={25} width={25} />
-                          <label className={styles.cameraLabel}>Rotate</label>
-                        </div>
+              )}
+              <div
+                className={`galleryPhotoSelect ${styles.cameraImageCropper}`}
+                style={{ display: 'flex' }}
+              >
+                {!fileUploadError && imageUploaded == true && (
+                  <div style={{ alignSelf: 'center' }}>
+                    {!isCameraImageUploaded && (
+                      <div
+                        style={
+                          imageFinalized == false
+                            ? { display: 'block' }
+                            : { display: 'none' }
+                        }
+                      >
+                        <Cropper
+                          src={imageData}
+                          style={{ height: '100%', width: 'auto' }}
+                          autoCropArea={0.9}
+                          initialAspectRatio={25 / 9}
+                          guides={false}
+                          crop={onCrop}
+                          ref={cropperRef}
+                          dragMode={'none'}
+                        />
                       </div>
-                    </div>
-                  </div>
-                )}
-                {imageFinalized == true && (
-                  <div>
-                    <div className={styles.popupTitle}>Finding solution...</div>
-                    <br></br>
-                    <div className={styles.scannedThumbnailContainer}>
-                      <div className={styles.scannerContainer}>
-                        <div className={styles.scannerRight}></div>
-                        <div className={styles.scannerLeft}></div>
-                      </div>
-                      <img
-                        src={croppedImageData.getCroppedCanvas().toDataURL()}
-                        width='100%'
-                        height='100%'
-                        alt='croppedImage'
-                      ></img>
-                    </div>
+                    )}
+                    {imageFinalized == true &&
+                      renderFindingSolutionAnimationSection()}
                   </div>
                 )}
               </div>
-            )}
-          </div>
-        </div>
-      )}
+              {!imageFinalized && renderCameraBottomControlsSection()}
+            </div>
+          )}
     </div>
   )
 }
