@@ -8,13 +8,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bodyContainer{
-  width: 100%;
+.bodyContainer {
   background-color: white;
   padding: 2rem;
   height: 100vh;
 }
 
-.searchBarDiv{
+.searchBarDiv {
   max-width: 40rem;
 }
