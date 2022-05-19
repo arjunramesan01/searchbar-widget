@@ -219,7 +219,11 @@ export const SearchbarComponent = (props) => {
     if (ques.href) {
       setRouteUrl('/' + ques['href'] + '/')
     } else {
-      setRouteUrl('/search/' + encodeURI(encode(ques['searchText'])) + '/')
+      setRouteUrl(
+        `/search/${encodeURI(
+          encode(ques['searchText'])
+        )}/?searchedTextUrl=${encodeURI(ques['searchText'])}`
+      )
     }
     clearSearch()
   }
