@@ -451,7 +451,7 @@ const ImageSearchPopup = (props) => {
 
   const renderPostPhotoClickedSection = () => {
     return (
-      <div className='photoClickSection'>
+      <div style={{ width: '100%' }} className='photoClickSection'>
         <div
           className={styles.cameraBackIcon}
           onClick={() => {
@@ -464,7 +464,13 @@ const ImageSearchPopup = (props) => {
         <Cropper
           src={imageData}
           className='cropper'
-          style={{ height: '100%', width: 'auto', backgroundColor: '#000' }}
+          style={{
+            height: '100%',
+            width: 'auto',
+            backgroundColor: '#000',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
           autoCropArea={0.9}
           initialAspectRatio={25 / 9}
           guides={false}
