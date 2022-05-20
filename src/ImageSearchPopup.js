@@ -3,11 +3,9 @@ import Cropper from 'react-cropper'
 import Webcam from 'react-webcam'
 import styles from './styles.module.css'
 import { encode } from 'url-encode-decode'
-import BackIcon from './BackIcon'
 import CrossIcon from './CrossIcon'
 import CameraIcon from './CameraIcon'
 import FlashIcon from './FlashIcon'
-import HelpIcon from './HelpIcon'
 import KeyboardIcon from './KeyboardIcon'
 import GalleryIcon from './GalleryIcon'
 import RetakeIcon from './RetakeIcon'
@@ -323,16 +321,18 @@ const ImageSearchPopup = (props) => {
       <div className='webcamWrapper'>
         {mediaPermissionsGranted && (
           <div className='webcamContainer'>
-            <Webcam
-              height={camHeight >= camWidth ? camHeight : null}
-              width={camWidth > camHeight ? camWidth : null}
-              className={styles.webcamClass}
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat='image/jpeg'
-              videoConstraints={videoConstraints}
-              onUserMediaError={videoError}
-            />
+            <div style={{ minWidth: camWidth, minHeight: camHeight }}>
+              <Webcam
+                height={camHeight >= camWidth ? camHeight : null}
+                width={camWidth > camHeight ? camWidth : null}
+                className={styles.webcamClass}
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat='image/jpeg'
+                videoConstraints={videoConstraints}
+                onUserMediaError={videoError}
+              />
+            </div>
             <div className={styles.centerMarker}>
               <CameraMarkerIcon />
             </div>
