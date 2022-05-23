@@ -417,6 +417,7 @@
 .cameraLabel {
   color: white;
   margin-left: 10px;
+  min-width: 49px;
 }
 
 .allowCamera {
