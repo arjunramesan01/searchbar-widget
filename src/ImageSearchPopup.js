@@ -432,18 +432,18 @@ const ImageSearchPopup = (props) => {
     return (
       <div>
         <div className={styles.popupTitle}>Finding solution...</div>
-        <br></br>
+        <br />
         <div className={styles.scannedThumbnailContainer}>
           <div className={styles.scannerContainer}>
-            <div className={styles.scannerRight}></div>
-            <div className={styles.scannerLeft}></div>
+            <div className={styles.scannerRight} />
+            <div className={styles.scannerLeft} />
           </div>
           <img
             src={croppedImageData.getCroppedCanvas().toDataURL()}
             width='100%'
             height='100%'
             alt='croppedImage'
-          ></img>
+          />
         </div>
       </div>
     )
@@ -510,12 +510,12 @@ const ImageSearchPopup = (props) => {
                     strokeWidth='2'
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                  ></path>
+                  />
                 </svg>
               </div>
             </div>
             <div className={styles.typeButton} onClick={handleRotate}>
-              <RotateIcon />
+              <RotateIcon fill="none" />
               <label className={styles.cameraLabel}>Rotate</label>
             </div>
           </div>
