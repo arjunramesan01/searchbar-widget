@@ -254,7 +254,14 @@ const ImageSearchPopup = (props) => {
 
   const renderCameraHeaderIcons = () => {
     return (
-      <Fragment>
+      <div
+        style={{
+          width: '100%',
+          height: '70px',
+          position: 'absolute',
+          zIndex: 30
+        }}
+      >
         <div className={styles.cameraBackIcon} onClick={stopWebCam}>
           <CrossIcon height={15} width={15} fill={'#fff'} />
         </div>
@@ -269,7 +276,7 @@ const ImageSearchPopup = (props) => {
             />
           </div>
         </div>
-      </Fragment>
+      </div>
     )
   }
 
@@ -515,7 +522,7 @@ const ImageSearchPopup = (props) => {
               </div>
             </div>
             <div className={styles.typeButton} onClick={handleRotate}>
-              <RotateIcon fill="none" />
+              <RotateIcon fill='none' />
               <label className={styles.cameraLabel}>Rotate</label>
             </div>
           </div>
