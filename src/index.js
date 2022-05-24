@@ -159,7 +159,7 @@ export const SearchbarComponent = (props) => {
   }
 
   function customSearch(text) {
-    if (text) {
+    if (text && text.trim().length !== 0) {
       text = text.replaceAll('+', '-plus-')
       text = text.replaceAll('%', '-pcnt-')
       text = text.replace(/(<([^>]+)>)/gi, '')
