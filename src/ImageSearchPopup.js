@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Cropper from 'react-cropper'
 import Webcam from 'react-webcam'
 import styles from './styles.module.css'
@@ -69,13 +69,18 @@ const ImageSearchPopup = (props) => {
   }
 
   const stopWebCam = () => {
-    props.setOpen(false)
-    setopenMobileCam(false)
-    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      stream.getTracks().forEach((track) => {
-        track.stop()
+    try {
+      navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+        stream.getTracks().forEach((track) => {
+          track.stop()
+        })
       })
-    })
+      handleFlash(false)
+      props.setOpen(false)
+      setopenMobileCam(false)
+    } catch (e) {
+      console.log('error in stopping webcam: ', e)
+    }
   }
 
   const handleTypeQuestion = () => {
@@ -217,38 +222,44 @@ const ImageSearchPopup = (props) => {
   }
 
   function handleFlash(showFlash) {
-    const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator
-    if (SUPPORTS_MEDIA_DEVICES) {
-      //Get the environment camera (usually the second one)
-      navigator.mediaDevices.enumerateDevices().then((devices) => {
-        const cameras = devices.filter((device) => device.kind === 'videoinput')
-        if (cameras.length === 0) {
-          throw 'No camera found on this device.'
-        }
-        const camera = cameras[cameras.length - 1]
-        // Create stream and get video track
-        navigator.mediaDevices
-          .getUserMedia({
-            video: {
-              deviceId: camera.deviceId,
-              facingMode: ['user', 'environment'],
-              height: { ideal: 1080 },
-              width: { ideal: 1920 }
-            }
-          })
-          .then((stream) => {
-            const track = stream.getVideoTracks()[0]
-            //Create image capture object and get camera capabilities
-            const imageCapture = new ImageCapture(track)
-            const photoCapabilities = imageCapture
-              .getPhotoCapabilities()
-              .then(() => {
-                track.applyConstraints({
-                  advanced: [{ torch: showFlash }]
+    try {
+      const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator
+      if (SUPPORTS_MEDIA_DEVICES) {
+        //Get the environment camera (usually the second one)
+        navigator.mediaDevices.enumerateDevices().then((devices) => {
+          const cameras = devices.filter(
+            (device) => device.kind === 'videoinput'
+          )
+          if (cameras.length === 0) {
+            throw 'No camera found on this device.'
+          }
+          const camera = cameras[cameras.length - 1]
+          // Create stream and get video track
+          navigator.mediaDevices
+            .getUserMedia({
+              video: {
+                deviceId: camera.deviceId,
+                facingMode: ['user', 'environment'],
+                height: { ideal: 1080 },
+                width: { ideal: 1920 }
+              }
+            })
+            .then((stream) => {
+              const track = stream.getVideoTracks()[0]
+              //Create image capture object and get camera capabilities
+              const imageCapture = new ImageCapture(track)
+              const photoCapabilities = imageCapture
+                .getPhotoCapabilities()
+                .then(() => {
+                  track.applyConstraints({
+                    advanced: [{ torch: showFlash }]
+                  })
                 })
-              })
-          })
-      })
+            })
+        })
+      }
+    } catch (e) {
+      console.log('error in handling flash: ', e)
     }
   }
 
