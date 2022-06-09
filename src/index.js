@@ -154,7 +154,7 @@ export const SearchbarComponent = (props) => {
   }
 
   function searchInput(value) {
-    setSearchKeyword(value)
+    setSearchKeyword(value.length <= 1000 ? value : value.substring(0, 1000))
     setSuggestions([])
   }
 
@@ -406,6 +406,7 @@ export const SearchbarComponent = (props) => {
                 }}
                 onKeyUp={(e) => searchInput(e.target.value)}
                 autoComplete='off'
+                maxLength={1000}
               ></input>
             </div>
             <div className={styles.byjus_search_widget_buttonContainer}>
