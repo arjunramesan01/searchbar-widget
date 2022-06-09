@@ -393,6 +393,7 @@ export const SearchbarComponent = (props) => {
             </div>
             <div>
               <input
+                ref={props.searchInputRef}
                 id='searchInput'
                 name='searchInput'
                 type='text'
