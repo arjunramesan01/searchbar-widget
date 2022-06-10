@@ -406,6 +406,7 @@ export const SearchbarComponent = (props) => {
                   enterButtonPressed(e)
                 }}
                 onKeyUp={(e) => searchInput(e.target.value)}
+                onInput={(e) => searchInput(e.target.value)}
                 autoComplete='off'
                 maxLength={1000}
               ></input>
