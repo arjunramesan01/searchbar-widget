@@ -92,7 +92,7 @@ export const SearchbarComponent = (props) => {
     window.addEventListener('focus', handleBrowserState.bind(true))
     window.addEventListener('blur', handleBrowserState.bind(false))
 
-    console.log('v1-widget')
+    console.log('v1-widget-land')
   }, [])
 
   function handleBrowserState(type) {
@@ -132,6 +132,7 @@ export const SearchbarComponent = (props) => {
   }, [searchKeyword])
 
   function checkOrientation() {
+  
     if (window.orientation == 90 || window.orientation == -90) {
       setIsLandscape(true)
     } else {
@@ -369,13 +370,6 @@ export const SearchbarComponent = (props) => {
         name='viewport'
         content='width=device-width, initial-scale=1, maximum-scale=1'
       ></meta>
-
-      {isTablet && isLandscape && (
-        <div className={styles.landscapeBlocker}>
-          Please switch to portrait mode for a better experience
-        </div>
-      )}
-      {!(isTablet && isLandscape) && (
         <div className={styles.byjus_search_widget_searchBarHolder}>
           <div className={styles.byjus_search_widget_searchBar}>
             <div className={styles.byjus_search_widget_searchbuttonHolder}>
@@ -620,7 +614,6 @@ export const SearchbarComponent = (props) => {
             ></ImageSearchDesktopPopup>
           </Popup>
         </div>
-      )}
     </div>
   )
 }
