@@ -165,7 +165,12 @@ export const SearchbarComponent = (props) => {
       text = text.replace(/(<([^>]+)>)/gi, '')
       var searchedItem = document.getElementById('searchInput').value
       localStorage.removeItem('imageSearched')
-      setRouteUrl(searchedItem)
+      setRouteUrl(
+        '/search/' +
+          encodeURI(encode(text)) +
+          '?searchedTextUrl=' +
+          searchedItem
+      )
     }
     clearSearch()
   }
