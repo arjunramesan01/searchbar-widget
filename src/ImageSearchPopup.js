@@ -143,6 +143,7 @@ const ImageSearchPopup = (props) => {
     var img = new Image()
     setImageFinalized(true)
     img.src = croppedImageData.getCroppedCanvas().toDataURL()
+    localStorage.setItem('imageSearched', img?.src)
     blob = croppedImageData.getCroppedCanvas().toDataURL('image/jpeg', 0.5)
     search_lo_by_image(blob)
       .then((r) => r.json())

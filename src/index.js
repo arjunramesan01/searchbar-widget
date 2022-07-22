@@ -132,7 +132,6 @@ export const SearchbarComponent = (props) => {
   }, [searchKeyword])
 
   function checkOrientation() {
-  
     if (window.orientation == 90 || window.orientation == -90) {
       setIsLandscape(true)
     } else {
@@ -165,12 +164,8 @@ export const SearchbarComponent = (props) => {
       text = text.replaceAll('%', '-pcnt-')
       text = text.replace(/(<([^>]+)>)/gi, '')
       var searchedItem = document.getElementById('searchInput').value
-      setRouteUrl(
-        '/search/' +
-          encodeURI(encode(text)) +
-          '?searchedTextUrl=' +
-          encodeURI(searchedItem)
-      )
+      localStorage.removeItem('imageSearched')
+      setRouteUrl(searchedItem)
     }
     clearSearch()
   }
@@ -226,6 +221,7 @@ export const SearchbarComponent = (props) => {
         )}/?searchedTextUrl=${encodeURI(ques['searchText'])}`
       )
     }
+    localStorage.removeItem('imageSearched')
     clearSearch()
   }
 
@@ -370,250 +366,244 @@ export const SearchbarComponent = (props) => {
         name='viewport'
         content='width=device-width, initial-scale=1, maximum-scale=1'
       ></meta>
-        <div className={styles.byjus_search_widget_searchBarHolder}>
-          <div className={styles.byjus_search_widget_searchBar}>
-            <div className={styles.byjus_search_widget_searchbuttonHolder}>
-              <div className={styles.byjus_search_widget_buttonHolder}>
-                <img
-                  onClick={() => customSearch(searchKeyword)}
-                  src={
-                    'https://search-static-stg.byjusweb.com/assets/SearchIcon1.png'
-                  }
-                  width='24'
-                  height='24'
-                  alt='SearchIcon'
-                ></img>
-              </div>
-            </div>
-            <div>
-              <input
-                ref={props.searchInputRef}
-                id='searchInput'
-                name='searchInput'
-                type='text'
-                placeholder={`Search`}
-                onFocus={() => {
-                  setInputFocus(true)
-                  showHistory(5)
-                }}
-                onKeyPress={(e) => {
-                  enterButtonPressed(e)
-                }}
-                onKeyUp={(e) => searchInput(e.target.value)}
-                onInput={(e) => searchInput(e.target.value)}
-                autoComplete='off'
-                maxLength={1000}
-              ></input>
-            </div>
-            <div className={styles.byjus_search_widget_buttonContainer}>
-              <div
-                className={styles.byjus_search_widget_buttonHolder}
-                style={{ transform: 'translateY(-2px)' }}
-              >
-                {(inputFocus ||
-                  suggestions.length > 0 ||
-                  history.length > 0) && (
-                  <div className={styles.byjus_search_widget_crossButtonHolder}>
-                    <img
-                      className={styles.byjus_search_widget_icon}
-                      onClick={() => clearSearch()}
-                      src={
-                        'https://search-static-stg.byjusweb.com/assets/cancel.webp'
-                      }
-                      width='12'
-                      height='12'
-                      alt='CrossIcon'
-                    ></img>
-                  </div>
-                )}
-              </div>
-
-              <div
-                className={
-                  inputFocus == true
-                    ? styles.byjus_search_widget_buttonHolder +
-                      ' ' +
-                      styles.showindesktop
-                    : styles.byjus_search_widget_buttonHolder
-                }
-              >
-                <div className={styles.byjus_search_widget_showinmobile}>
-                  <div
-                    className={styles.byjus_search_widget_cameraButtonHolder1}
-                  >
-                    <img
-                      className={styles.byjus_search_widget_icon}
-                      onClick={() => cameraClick()}
-                      src={
-                        'https://search-static-stg.byjusweb.com/assets/Camera.png'
-                      }
-                      width='24'
-                      height='24'
-                      alt='CameraIcon'
-                    ></img>
-                  </div>
-                </div>
-                <div className={styles.byjus_search_widget_showindesktop}>
-                  <div
-                    className={styles.byjus_search_widget_cameraButtonHolder2}
-                  >
-                    <img
-                      className={styles.byjus_search_widget_icon}
-                      onClick={() => imageSearch()}
-                      src={
-                        'https://search-static-stg.byjusweb.com/assets/Camera.png'
-                      }
-                      width='24'
-                      height='24'
-                      alt='CameraIcon'
-                    ></img>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {suggestions.length > 0 && (
-              <div className={styles.byjus_search_widget_suggestionHolder}>
-                {suggestions.map((el, i) => (
-                  <div key={'suggestion_' + i}>
-                    {el.href && (
-                      <div
-                        className={styles.byjus_search_widget_suggestionBox}
-                        onClick={() => {
-                          openQuestion(el, i)
-                        }}
-                      >
-                        <div>
-                          <MathJaxContext config={MathjaxConfig}>
-                            <MathJax>
-                              <div
-                                className={styles.hideImage}
-                                dangerouslySetInnerHTML={{
-                                  __html: removeOptions(el.question_text) || ''
-                                }}
-                              ></div>
-                            </MathJax>
-                          </MathJaxContext>
-                        </div>
-                        <div>
-                          <img
-                            src={
-                              'https://search-static-stg.byjusweb.com/assets/SearchRecommendation.png'
-                            }
-                            width='24'
-                            height='24'
-                            alt='search-recommendation'
-                          ></img>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-            {suggestions.length == 0 && history.length > 0 && !searchKeyword && (
-              <div className={styles.byjus_search_widget_suggestionHolder}>
-                {history.map((el, i) => (
-                  <div
-                    key={'history_' + i}
-                    className={styles.byjus_search_widget_historyBox}
-                    onClick={() => {
-                      openHistory(el)
-                    }}
-                  >
-                    <div className={styles.byjus_search_widget_clockIcon}>
-                      <img
-                        src={
-                          'https://search-static-stg.byjusweb.com/assets/SearchHistory.png'
-                        }
-                        width='20'
-                        height='20'
-                        alt='search-history'
-                      ></img>
-                    </div>
-                    <div>
-                      <MathJaxContext config={MathjaxConfig}>
-                        <MathJax>
-                          <div
-                            className={styles.hideImage}
-                            dangerouslySetInnerHTML={{
-                              __html: removeOptions(el.searchText) || ''
-                            }}
-                          ></div>
-                        </MathJax>
-                      </MathJaxContext>
-                    </div>
-                    <div>
-                      <img
-                        src={
-                          'https://search-static-stg.byjusweb.com/assets/SearchRecommendation.png'
-                        }
-                        width='24'
-                        height='24'
-                        alt='search-recommendation'
-                      ></img>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <Popup
-            id='popup_camera'
-            overlayStyle={overlayStyle}
-            lockScroll={true}
-            open={open}
-            modal
-            contentStyle={contentStyle_mobilePopup}
-            closeOnDocumentClick={false}
-            onClose={closeModal}
-            className='uploadPopup'
-          >
-            <ImageSearchPopup
-              AUTH_KEY={AUTH_KEY}
-              API_ENDPOINT={API_ENDPOINT}
-              openMobileCam={openMobileCam}
-              setFocusSearchbar={(el) => setFocusSearchbar(el)}
-              setOpen={(el) => setOpen(el)}
-              setRouteUrl={(el) => setRouteUrl(el)}
-              camHeight={window.innerHeight}
-              camWidth={window.innerWidth}
-            ></ImageSearchPopup>
-          </Popup>
-          <Popup
-            overlayStyle={overlayStyle}
-            id='popup_camera_desktop'
-            lockScroll={true}
-            open={openDesktopPopup}
-            contentStyle={contentStyle_dektopPopup}
-            modal
-            closeOnDocumentClick={false}
-            onClose={closeDesktopModal}
-            className='askADoubt-popup'
-          >
-            <div className={styles.askADoubtPopupTopbannerCrossIcon}>
+      <div className={styles.byjus_search_widget_searchBarHolder}>
+        <div className={styles.byjus_search_widget_searchBar}>
+          <div className={styles.byjus_search_widget_searchbuttonHolder}>
+            <div className={styles.byjus_search_widget_buttonHolder}>
               <img
-                onClick={() => {
-                  setOpenDesktopPopup(false)
-                }}
-                className={styles.pointer}
+                onClick={() => customSearch(searchKeyword)}
                 src={
-                  'https://search-static-stg.byjusweb.com/assets/crossGreyIcon.png'
+                  'https://search-static-stg.byjusweb.com/assets/SearchIcon1.png'
                 }
-                alt='loader'
-                height='40'
-                width='40'
+                width='24'
+                height='24'
+                alt='SearchIcon'
               ></img>
             </div>
-            <ImageSearchDesktopPopup
-              AUTH_KEY={AUTH_KEY}
-              API_ENDPOINT={API_ENDPOINT}
-              setOpenDesktopPopup={(el) => setOpenDesktopPopup(el)}
-              setRouteUrl={(el) => setRouteUrl(el)}
-            ></ImageSearchDesktopPopup>
-          </Popup>
+          </div>
+          <div>
+            <input
+              ref={props.searchInputRef}
+              id='searchInput'
+              name='searchInput'
+              type='text'
+              placeholder={`Search`}
+              onFocus={() => {
+                setInputFocus(true)
+                showHistory(5)
+              }}
+              onKeyPress={(e) => {
+                enterButtonPressed(e)
+              }}
+              onKeyUp={(e) => searchInput(e.target.value)}
+              onInput={(e) => searchInput(e.target.value)}
+              autoComplete='off'
+              maxLength={1000}
+            ></input>
+          </div>
+          <div className={styles.byjus_search_widget_buttonContainer}>
+            <div
+              className={styles.byjus_search_widget_buttonHolder}
+              style={{ transform: 'translateY(-2px)' }}
+            >
+              {(inputFocus || suggestions.length > 0 || history.length > 0) && (
+                <div className={styles.byjus_search_widget_crossButtonHolder}>
+                  <img
+                    className={styles.byjus_search_widget_icon}
+                    onClick={() => clearSearch()}
+                    src={
+                      'https://search-static-stg.byjusweb.com/assets/cancel.webp'
+                    }
+                    width='12'
+                    height='12'
+                    alt='CrossIcon'
+                  ></img>
+                </div>
+              )}
+            </div>
+
+            <div
+              className={
+                inputFocus == true
+                  ? styles.byjus_search_widget_buttonHolder +
+                    ' ' +
+                    styles.showindesktop
+                  : styles.byjus_search_widget_buttonHolder
+              }
+            >
+              <div className={styles.byjus_search_widget_showinmobile}>
+                <div className={styles.byjus_search_widget_cameraButtonHolder1}>
+                  <img
+                    className={styles.byjus_search_widget_icon}
+                    onClick={() => cameraClick()}
+                    src={
+                      'https://search-static-stg.byjusweb.com/assets/Camera.png'
+                    }
+                    width='24'
+                    height='24'
+                    alt='CameraIcon'
+                  ></img>
+                </div>
+              </div>
+              <div className={styles.byjus_search_widget_showindesktop}>
+                <div className={styles.byjus_search_widget_cameraButtonHolder2}>
+                  <img
+                    className={styles.byjus_search_widget_icon}
+                    onClick={() => imageSearch()}
+                    src={
+                      'https://search-static-stg.byjusweb.com/assets/Camera.png'
+                    }
+                    width='24'
+                    height='24'
+                    alt='CameraIcon'
+                  ></img>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {suggestions.length > 0 && (
+            <div className={styles.byjus_search_widget_suggestionHolder}>
+              {suggestions.map((el, i) => (
+                <div key={'suggestion_' + i}>
+                  {el.href && (
+                    <div
+                      className={styles.byjus_search_widget_suggestionBox}
+                      onClick={() => {
+                        openQuestion(el, i)
+                      }}
+                    >
+                      <div>
+                        <MathJaxContext config={MathjaxConfig}>
+                          <MathJax>
+                            <div
+                              className={styles.hideImage}
+                              dangerouslySetInnerHTML={{
+                                __html: removeOptions(el.question_text) || ''
+                              }}
+                            ></div>
+                          </MathJax>
+                        </MathJaxContext>
+                      </div>
+                      <div>
+                        <img
+                          src={
+                            'https://search-static-stg.byjusweb.com/assets/SearchRecommendation.png'
+                          }
+                          width='24'
+                          height='24'
+                          alt='search-recommendation'
+                        ></img>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+          {suggestions.length == 0 && history.length > 0 && !searchKeyword && (
+            <div className={styles.byjus_search_widget_suggestionHolder}>
+              {history.map((el, i) => (
+                <div
+                  key={'history_' + i}
+                  className={styles.byjus_search_widget_historyBox}
+                  onClick={() => {
+                    openHistory(el)
+                  }}
+                >
+                  <div className={styles.byjus_search_widget_clockIcon}>
+                    <img
+                      src={
+                        'https://search-static-stg.byjusweb.com/assets/SearchHistory.png'
+                      }
+                      width='20'
+                      height='20'
+                      alt='search-history'
+                    ></img>
+                  </div>
+                  <div>
+                    <MathJaxContext config={MathjaxConfig}>
+                      <MathJax>
+                        <div
+                          className={styles.hideImage}
+                          dangerouslySetInnerHTML={{
+                            __html: removeOptions(el.searchText) || ''
+                          }}
+                        ></div>
+                      </MathJax>
+                    </MathJaxContext>
+                  </div>
+                  <div>
+                    <img
+                      src={
+                        'https://search-static-stg.byjusweb.com/assets/SearchRecommendation.png'
+                      }
+                      width='24'
+                      height='24'
+                      alt='search-recommendation'
+                    ></img>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
+
+        <Popup
+          id='popup_camera'
+          overlayStyle={overlayStyle}
+          lockScroll={true}
+          open={open}
+          modal
+          contentStyle={contentStyle_mobilePopup}
+          closeOnDocumentClick={false}
+          onClose={closeModal}
+          className='uploadPopup'
+        >
+          <ImageSearchPopup
+            AUTH_KEY={AUTH_KEY}
+            API_ENDPOINT={API_ENDPOINT}
+            openMobileCam={openMobileCam}
+            setFocusSearchbar={(el) => setFocusSearchbar(el)}
+            setOpen={(el) => setOpen(el)}
+            setRouteUrl={(el) => setRouteUrl(el)}
+            camHeight={window.innerHeight}
+            camWidth={window.innerWidth}
+          ></ImageSearchPopup>
+        </Popup>
+        <Popup
+          overlayStyle={overlayStyle}
+          id='popup_camera_desktop'
+          lockScroll={true}
+          open={openDesktopPopup}
+          contentStyle={contentStyle_dektopPopup}
+          modal
+          closeOnDocumentClick={false}
+          onClose={closeDesktopModal}
+          className='askADoubt-popup'
+        >
+          <div className={styles.askADoubtPopupTopbannerCrossIcon}>
+            <img
+              onClick={() => {
+                setOpenDesktopPopup(false)
+              }}
+              className={styles.pointer}
+              src={
+                'https://search-static-stg.byjusweb.com/assets/crossGreyIcon.png'
+              }
+              alt='loader'
+              height='40'
+              width='40'
+            ></img>
+          </div>
+          <ImageSearchDesktopPopup
+            AUTH_KEY={AUTH_KEY}
+            API_ENDPOINT={API_ENDPOINT}
+            setOpenDesktopPopup={(el) => setOpenDesktopPopup(el)}
+            setRouteUrl={(el) => setRouteUrl(el)}
+          ></ImageSearchDesktopPopup>
+        </Popup>
+      </div>
     </div>
   )
 }
